@@ -1,26 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br" xml:lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Seraph</title>
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <a href="{{URL_BASE}}?controller=funcionarios&acao=index">Página de funcionários</a>                
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col">
                 {{conteudo}}
             </div>
         </div>
     </div>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
-</body>
-</html>
+    
+    <script src="./node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="./node_modules/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="./node_modules/jquery-validation/dist/localization/messages_pt_BR.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#addFuncionario').validate({
+                rules: {
+                    nome: {
+                        required: true,
+                        minWords: 2,
+                    },
+                    data_nasc: {
+                        required: true,
+                        date: true,
+                    },
+                    end_cep: {
+                        required: true,
+                        postalcodeBR: true,
+                    },
+                    end_logradouro: {
+                        required: true,
+                        maxlength: 150,
+                    },
+                    end_numero: {
+                        required: true,
+                        number: true,
+                    },
+                    end_bairro: {
+                        required: true,
+                        maxlength: 150,
+                    },
+                    end_cidade: {
+                        required: true,
+                        maxlength: 150,
+                    },
+                    end_estado: {
+                        required: true,
+                        maxlength: 150,
+                    },
+                    email: {
+                        required: true,
+                        email: true,
+                    },
+                    tel_fixo: {
+                        number: true,
+                        maxlength: 10,
+                    },
+                    tel_cel: {
+                        required: true,
+                        number: true,
+                        maxlength: 11,
+                    },
+                    competencia_tec: {
+                        
+                        maxlength: 2000,
+                    },
+                    competencia_compor: {
+                        
+                        maxlength: 2000,
+                    }
+                },
+                submitHandler: function(form){
+                    form.submit();
+                }
+            })
+        })
+        </script>
+    </body>
+    </html>

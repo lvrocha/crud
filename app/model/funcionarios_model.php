@@ -10,10 +10,6 @@ class Funcionarios{
         $this->mysqli = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_SENHA, BD_BANCO);
     }
 
-    public function index(){
-        echo "funcionarios";
-    }
-
     public function createFuncionario($dados=null){
         if (isset($dados)) {
             $nome = $dados['nome'];
@@ -29,8 +25,8 @@ class Funcionarios{
             $tel_cel = $dados['tel_cel'];
             $competencia_tec = $dados['competencia_tec'];
             $competencia_compor = $dados['competencia_compor'];
-            $sql = $this->mysqli->prepare("INSERT INTO funcionarios (nome, data_nasc, end_cep, end_logradouro, end_bairro, end_cidade, end_estado, end_numero, email, tel_fixo, tel_cel, competencia_tec, competencia_compor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $sql->bind_param("sssssssssssss",$nome, $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
+            $sql = $this->mysqli->prepare("INSERT INTO funcionarios (id, nome, data_nasc, end_cep, end_logradouro, end_bairro, end_cidade, end_estado, end_numero, email, tel_fixo, tel_cel, competencia_tec, competencia_compor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            $sql->bind_param("ssssssssssssss", null, $nome, $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
             if ($sql->execute()==true) {
                 return true;
             }else{
@@ -44,8 +40,12 @@ class Funcionarios{
 
     public function readFuncionario(){
         $result = $this->mysqli->query("SELECT * FROM funcionarios");
-        while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+        $array = array();
+        while ($row = $result->fetch_object()) {
             $array[] = $row;
+        }
+        if (!$array) {
+            throw new Exception("Não foi encontrado nenhum registro no banco");
         }
         return $array;
     }
