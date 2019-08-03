@@ -2,5 +2,8 @@
   "dependencies": {
     "jquery": "^3.4.1",
     "jquery-validation": "^1.19.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.1"
   }
 }

@@ -6,7 +6,7 @@ class Core{
         if (isset($urlGet['controller'])) {
             $controller = $urlGet['controller'].'Controller';
         }else{
-            $controller = "funcionariosController";
+            $controller = "loginController";
         }
 
         if(isset($urlGet['acao'])){
