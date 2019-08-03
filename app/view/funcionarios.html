@@ -10,6 +10,7 @@
             </tr>
         </thead>
         <tbody>
+            {% if funcionarios %}
             {% for valor in funcionarios %}
                 <tr>
                     <td>{{ valor.nome }}</td>           
@@ -20,6 +21,11 @@
                         <a href="{{ link_ver }}{{ valor.id }}" class="btn btn-secondary btn-sm">Detalhes</a></td>
                 </tr>
             {% endfor %}
+            {% else %}
+                <tr>
+                    <td>Nenhum registro encontrado</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 </div>

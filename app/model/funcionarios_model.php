@@ -49,9 +49,7 @@ class Funcionarios{
         while ($row = $result->fetch_object()) {
             $array[] = $row;
         }
-        if (!$array) {
-            throw new Exception("Não foi encontrado nenhum registro no banco");
-        }
+        
         return $array;
     }
 
@@ -71,8 +69,10 @@ class Funcionarios{
             $tel_cel = $dados['tel_cel'];
             $competencia_tec = $dados['competencia_tec'];
             $competencia_compor = $dados['competencia_compor'];
-            $sql = $this->mysqli->prepare("UPDATE 'funcionarios' SET nome = ?, data_nasc = ?, end_cep = ?, end_logradouro = ?, end_bairro = ?, end_cidade = ?, end_estado = ?, end_numero = ?, email = ?, tel_fixo = ?, tel_cel = ?, competencia_tec = ?, competencia_compor = ?");
-            $sql->bind_param("sssssssssssss",$nome,  $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
+            $sql = $this->mysqli->prepare("UPDATE funcionarios SET nome = ?, data_nasc = ?, end_cep = ?, end_logradouro = ?, end_bairro = ?, end_cidade = ?, end_estado = ?, end_numero = ?, email = ?, tel_fixo = ?, tel_cel = ?, competencia_tec = ?, competencia_compor = ? WHERE id = ?");
+            #var_dump($sql);
+            $sql->bind_param("ssissssssssssi",$nome,  $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor, $id);
+            #var_dump($sql);
             if ($sql->execute()==true) {
                 return true;
             }else{
