@@ -128,4 +128,18 @@ class funcionariosController{
             $this->mensagem($mensagem);
         }
     }
+    
+    public function exportPdf(){
+        $id = $_GET['id'];
+        $funcionario = $this->funcionarios->searchFuncionarios($id);
+        $template = $this->twig->load('funcionariosdetalhes.html');
+        $parametros = array();
+        $parametros['funcionario'] = $funcionario;
+        $parametros['link_pdf'] = BASE_URL."?controller=funcionarios&acao=exportPdf";
+        $parametros['link_inicio'] = BASE_URL;
+        $conteudo = $template->render($parametros);
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML($conteudo);
+        $mpdf->Output();
+    }
 }

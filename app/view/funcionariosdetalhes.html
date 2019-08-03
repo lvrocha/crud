@@ -1,16 +1,65 @@
-<h1>Detalhes</h1>
-<p>Nome: {{funcionario.nome}}</p>
-<p>Nascimento: {{funcionario.data_nasc}}</p>
-<p>CEP: {{funcionario.end_cep}}</p>
-<p>Logradouro: {{funcionario.end_logradouro}}</p>
-<p>Numero: {{funcionario.end_numero}}</p>
-<p>Bairro: {{funcionario.end_bairro}}</p>
-<p>Cidade: {{funcionario.end_cidade}}</p>
-<p>Estado: {{funcionario.end_estado}}</p>
-<p>Email: {{funcionario.email}}</p>
-<p>Telefone Fixo: {{funcionario.tel_fixo}}</p>
-<p>Celular: {{funcionario.tel_cel}}</p>
-<p>Competências Técnicas: {{funcionario.competencia_tec}}</p>
-<p>Competencias Comportamentais: {{funcionario.competencia_compor}}</p>
-<a href="{{link_pdf}}" class="btn btn-secondary btn-sm">Exportar PDF</a>
+<table class="table table-sm table-bordered table-striped col-10">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <h1>Detalhes</h1>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td><b>Nome</b></td>
+                <td>{{funcionario.nome}}</td>
+            </tr>
+            <tr>
+                <td><b>Nascimento</b></td>
+                <td>{{funcionario.data_nasc}}</td>
+            </tr>
+            <tr>
+                <td><b>CEP</b></td>
+                <td>{{funcionario.end_cep}}</td>
+            </tr>
+            <tr>
+                <td><b>Logradouro</b></td>
+                <td>{{funcionario.end_logradouro}}</td>
+            </tr>
+            <tr>
+                <td><b>Numero</b></td>
+                <td>{{funcionario.end_numero}}</td>
+            </tr>
+            <tr>
+                <td><b>Bairro</b></td>
+                <td>{{funcionario.end_bairro}}</td>
+            </tr>
+            <tr>
+                <td><b>Cidade</b></td>
+                <td>{{funcionario.end_cidade}}</td>
+            </tr>
+            <tr>
+                <td><b>Estado</b></td>
+                <td>{{funcionario.end_estado}}</td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>{{funcionario.email}}</td>
+            </tr>
+            <tr>
+                <td><b>Telefone Fixo</b></td>
+                <td>{{funcionario.tel_fixo}}</td>
+            </tr>
+            <tr>
+                <td><b>Celular</b></td>
+                <td>{{funcionario.tel_cel}}</td>
+            </tr>
+            <tr>
+                <td><b>Competências Técnicas:</b></td>
+                <td>{{funcionario.competencia_tec}}</td>
+            </tr>
+            <tr>
+                <td><b>Competencias Comportamentais:</b></td>
+                <td>{{funcionario.competencia_compor}}</td>
+            </tr>
+    </tbody>
+</table>
+<a href="{{link_pdf}}&id={{funcionario.id}}" class="btn btn-secondary btn-sm">Exportar PDF</a>
 <a href="{{link_inicio}}">Início</a>
