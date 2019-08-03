@@ -1,4 +1,5 @@
 <?php
+ini_set('default_charset', 'UTF-8');
 //importações
 require_once('./app/config.php');
 require_once('./app/core/core.php');

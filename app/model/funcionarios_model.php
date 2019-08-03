@@ -8,10 +8,12 @@ class Funcionarios{
 
     private function conexao(){
         $this->mysqli = new mysqli(BD_SERVIDOR, BD_USUARIO, BD_SENHA, BD_BANCO);
+        $this->mysqli->set_charset("utf8");
     }
 
     public function createFuncionario($dados=null){
         if (isset($dados)) {
+            $id = null;
             $nome = $dados['nome'];
             $data_nasc = $dados['data_nasc'];
             $end_cep = $dados['end_cep'];
@@ -26,7 +28,10 @@ class Funcionarios{
             $competencia_tec = $dados['competencia_tec'];
             $competencia_compor = $dados['competencia_compor'];
             $sql = $this->mysqli->prepare("INSERT INTO funcionarios (id, nome, data_nasc, end_cep, end_logradouro, end_bairro, end_cidade, end_estado, end_numero, email, tel_fixo, tel_cel, competencia_tec, competencia_compor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            $sql->bind_param("ssssssssssssss", null, $nome, $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
+            echo "<br>";
+            #var_dump($sql);
+            $sql->bind_param("ississssssssss", $id, $nome, $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
+            
             if ($sql->execute()==true) {
                 return true;
             }else{
