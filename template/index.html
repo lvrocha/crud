@@ -28,6 +28,17 @@
     
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#formlogin').validate({
+                rules:{
+                    login: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true
+                    }
+                }
+            })
             $('#addFuncionario').validate({
                 rules: {
                     nome: {

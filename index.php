@@ -4,6 +4,7 @@ ini_set('default_charset', 'UTF-8');
 require_once('./app/config.php');
 require_once('./app/core/core.php');
 require_once('./app/model/funcionarios_model.php');
+require_once('./app/model/usuario_model.php');
 require_once('./app/controllers/funcionarios_controller.php');
 require_once('./app/controllers/loginController.php');
 require_once('./app/controllers/erro_controller.php');

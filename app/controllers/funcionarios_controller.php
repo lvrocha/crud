@@ -10,6 +10,20 @@ class funcionariosController{
         $this->funcionarios = new Funcionarios();
         $loader = new \Twig\Loader\FilesystemLoader('app/view');
         $this->twig = new \Twig\Environment($loader);
+        session_start();
+        $this->verificasession();
+    }
+
+    public function verificasession(){
+        if ( $_SESSION['logado']!==true){
+            session_destroy();
+            header('Location: '.BASE_URL.'?controller=login&mensagem=needlogin');
+        }
+    }
+
+    public function sair(){
+        session_destroy();
+        header('Location: '.BASE_URL.'?controller=login&mensagem=thanks');
     }
     
     public function index(){
@@ -21,6 +35,7 @@ class funcionariosController{
         $parametros['link_adicionar'] = BASE_URL."?controller=funcionarios&acao=adicionar";
         $parametros['link_pdf'] = BASE_URL."?controller=funcionarios&acao=exportPdf";
         $parametros['link_ver'] = BASE_URL."?controller=funcionarios&acao=ver&id=";
+        $parametros['url_base'] = BASE_URL;
         
         $valor = $this->funcionarios->readFuncionario();
         $parametros['funcionarios'] = $valor;
@@ -37,7 +52,7 @@ class funcionariosController{
             $parametros = array();
             $parametros['funcionario'] = $funcionario;
             $parametros['link_pdf'] = BASE_URL."?controller=funcionarios&acao=exportPdf";
-            $parametros['link_inicio'] = BASE_URL;
+            $parametros['link_inicio'] = BASE_URL."?controller=funcionarios";
             $conteudo = $template->render($parametros);
             echo $conteudo;
         }else{
@@ -78,7 +93,7 @@ class funcionariosController{
         $template = $this->twig->load('mensagem.html');
         $parametros = array();
         $parametros['mensagem'] = $dados;
-        $parametros['link_inicio'] = BASE_URL;
+        $parametros['link_inicio'] = BASE_URL."?controller=funcionarios";
         
         $conteudo = $template->render($parametros);
         echo $conteudo;
@@ -115,7 +130,7 @@ class funcionariosController{
                 $template = $this->twig->load('deletefuncionario.html');
                 $parametros = array();
                 $parametros['mensagem'] = "Registro deletado com sucesso!";
-                $parametros['link_inicio'] = BASE_URL;
+                $parametros['link_inicio'] = BASE_URL."?controller=funcionarios";
                 
                 $conteudo = $template->render($parametros);
                 echo $conteudo;
@@ -136,7 +151,7 @@ class funcionariosController{
         $parametros = array();
         $parametros['funcionario'] = $funcionario;
         $parametros['link_pdf'] = BASE_URL."?controller=funcionarios&acao=exportPdf";
-        $parametros['link_inicio'] = BASE_URL;
+        $parametros['link_inicio'] = BASE_URL."?controller=funcionarios";
         $conteudo = $template->render($parametros);
         $mpdf = new \Mpdf\Mpdf();
         $mpdf->WriteHTML($conteudo);

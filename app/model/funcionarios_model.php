@@ -28,7 +28,7 @@ class Funcionarios{
             $competencia_tec = $dados['competencia_tec'];
             $competencia_compor = $dados['competencia_compor'];
             $sql = $this->mysqli->prepare("INSERT INTO funcionarios (id, nome, data_nasc, end_cep, end_logradouro, end_bairro, end_cidade, end_estado, end_numero, email, tel_fixo, tel_cel, competencia_tec, competencia_compor) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            echo "<br>";
+            #echo "<br>";
             #var_dump($sql);
             $sql->bind_param("ississssssssss", $id, $nome, $data_nasc, $end_cep, $end_logradouro, $end_bairro, $end_cidade, $end_estado, $end_numero, $email, $tel_fixo, $tel_cel, $competencia_tec, $competencia_compor);
             
